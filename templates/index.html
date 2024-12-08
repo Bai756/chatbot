@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Chatbot</title>
+</head>
+<body>
+    <div class="center">
+        <h1>Chatbot</h1>
+    </div>
+    <div>
+        <div class="chatbox center">
+            {% for message in messages %}
+                {% if message['type'] == 'bot' %}
+                    <div class="message bot">
+                        <p>{{ message['text'] }}</p>
+                    </div>
+                {% else %}
+                    <div class="message user">
+                        <p>{{ message['text'] }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="center">
+            <form method="POST">
+                <input autocomplete="off" autofocus name="question" placeholder="Type a message" type="text">
+                <button>Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
