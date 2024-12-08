@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 import requests
 from dotenv import load_dotenv
 import os
@@ -6,6 +6,8 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+
+app.secret_key = os.getenv('SECRET_KEY')
 
 # API
 API_URL = "https://jamsapi.hackclub.dev/openai/chat/completions"
@@ -15,12 +17,6 @@ headers = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json"
 }
-
-
-messages = [
-    {'type': 'bot', 'text': 'Hello, I am a chatbot! Ask me anything.'}
-]
-
 
 def get_response(question):
     payload = {
@@ -44,16 +40,25 @@ def get_response(question):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     
+    if 'messages' not in session:
+        session['messages'] = [{'type': 'bot', 'text': 'Hello, I am a chatbot! Ask me anything.'}]
+
     if request.method == 'POST':
         user_message = request.form['question']
-        messages.append({'type': 'user', 'text': user_message})
+        session['messages'].append({'type': 'user', 'text': user_message})
 
-        # answer = get_response(user_message)
         answer = "temp"
+        session['messages'].append({'type': 'bot', 'text': answer})
 
-        messages.append({'type': 'bot', 'text': answer})
+        session.modified = True
 
-    return render_template('index.html', messages=messages)
+    return render_template('index.html', messages=session['messages'])
+
+
+@app.route('/clear')
+def clear():
+    session.clear()
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
