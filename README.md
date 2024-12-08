@@ -20,3 +20,5 @@
 
 - Open your browser and go to `http://127.0.0.1:5000/`
 - Interact with the chatbot by typing your questions and receiving responses.
+
+It uses the openai api to generate responses.
