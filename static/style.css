@@ -1,7 +1,8 @@
 body {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin: 10px;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
 }
 
 .center {
@@ -11,7 +12,7 @@ body {
 }
 
 .chatbox {
-    border: 3px solid black;
+    border: 1px solid black;
     padding: 10px;
     width: 90%; 
     height: 400px; 
@@ -19,16 +20,55 @@ body {
 }
 
 .message {
-    margin: 10px;
-    padding: 1px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    word-wrap: break-word;
 }
 
 .user {
+    background-color: #007bff;
+    color: #fff;
     text-align: right;
 }
 
 .bot {
+    background-color: #e0e0e0;
     text-align: left;
+}
+
+a {
+    text-align: center;
+    margin: 10px 0;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+form {
+    padding: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
 }

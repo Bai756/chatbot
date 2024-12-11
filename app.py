@@ -47,7 +47,7 @@ def index():
         user_message = request.form['question']
         session['messages'].append({'type': 'user', 'text': user_message})
 
-        answer = "temp"
+        answer = get_response(user_message)
         session['messages'].append({'type': 'bot', 'text': answer})
 
         session.modified = True
@@ -62,4 +62,4 @@ def clear():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=3000, debug=True)
+    app.run()
