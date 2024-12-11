@@ -2,9 +2,9 @@
 
 ## Setup
 
-1. Clone the repository:
+1. Clone the repository
 
-2. Create a virtual environment and install dependencies:
+2. Create a virtual environment and install dependencies using requirments.txt
 
 3. Create a `.env` file in the root directory and add your API key:
     ```env
