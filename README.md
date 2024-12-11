@@ -1,5 +1,8 @@
 # Flask Chatbot
 
+## Demo
+The demo is running on render.com, so if it was inactive, it will take a minute or so to boot up again, so please be patient. The chatbot is slower because of the host.
+
 ## Setup
 
 1. Clone the repository
