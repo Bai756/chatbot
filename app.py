@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import requests
 from dotenv import load_dotenv
 import os
@@ -37,21 +37,11 @@ def get_response(question):
 
     return answer
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    
     if 'messages' not in session:
         session['messages'] = [{'type': 'bot', 'text': 'Hello, I am a chatbot! Ask me anything.'}]
-
-    if request.method == 'POST':
-        user_message = request.form['question']
-        session['messages'].append({'type': 'user', 'text': user_message})
-
-        answer = get_response(user_message)
-        session['messages'].append({'type': 'bot', 'text': answer})
-
-        session.modified = True
-
+    
     return render_template('index.html', messages=session['messages'])
 
 
@@ -59,3 +49,16 @@ def index():
 def clear():
     session.clear()
     return redirect(url_for('index'))
+
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.form.get('question', '')
+    
+    session['messages'].append({'type': 'user', 'text': user_message})
+
+    answer = get_response(user_message)
+    session['messages'].append({'type': 'bot', 'text': answer})
+    session.modified = True
+
+    return jsonify({"response": answer})

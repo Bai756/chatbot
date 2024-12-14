@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .center {
@@ -20,22 +21,56 @@ body {
     overflow-y: auto;
 }
 
+.message-container {
+    display: flex;
+    align-items: flex-end;
+    margin: 15px 0;  
+}
+
+.user-container {
+    justify-content: flex-end;
+}
+
+.bot-container {
+    justify-content: flex-start;
+}
+
 .message {
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 20px;
     word-wrap: break-word;
+    padding: 10px;
 }
 
 .user {
+    justify-content: flex-end;
     background-color: #007bff;
     color: #fff;
     text-align: right;
+    border-radius: 20px 20px 0 20px;
 }
 
 .bot {
+    justify-content: flex-start;
     background-color: #e0e0e0;
     text-align: left;
+    border-radius: 20px 20px 20px 0;
+}
+
+.profile-bubble {
+    border: 1.5px solid #000000;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 10px;
+    flex-shrink: 0;
+    
+}
+
+.user-bubble {
+    background-color: #007bff;
+}
+
+.bot-bubble {
+    background-color: #e0e0e0;
 }
 
 a {
@@ -72,4 +107,20 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.loading-dots span {
+    animation: blink 1.5s infinite;
+    animation-delay: calc(0.2s * var(--i, 0));
+    display: inline-block;
+}
+
+.loading-dots span:nth-child(1) { --i: 1; }
+.loading-dots span:nth-child(2) { --i: 2; }
+.loading-dots span:nth-child(3) { --i: 3; }
+
+@keyframes blink {
+    0%, 20% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
